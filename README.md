@@ -1,6 +1,6 @@
 # Lab-4-Fatiga
 La electromiografía es un estudio que mide la actividad eléctrica de los músculos y los nervios que los controlan. Se usa para diagnosticar trastornos neuromusculares, como neuropatías, miopatías o enfermedades de la motoneurona. El electromiograma es la grabación de dicha actividad electrica. La electromiografía se puede realizar de dos formas, una se realiza insertando electrodos de aguja en los músculos para registrar su actividad en reposo y durante la contracción, la otra se hace superficialmente por medio de electrodos, utilizando 2 electrodos de trabajo y uno de tierra. En este laboratorio se hizo el estudio de el músculo braquioradial de forma superficial.
-La respuesta impulsiva es la respuesta del múusculo o fibra muscular al estimulo, es decir que describe cómo se propaga el potencial de acción en el músculo. 
+La respuesta impulsiva es la respuesta del músculo o fibra muscular al estimulo, es decir que describe cómo se propaga el potencial de acción en el músculo. 
 
 ## Procedimiento
 
