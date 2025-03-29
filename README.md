@@ -3,9 +3,10 @@ La electromiografía es un estudio que mide la actividad eléctrica de los músc
 La respuesta impulsiva es la respuesta del múusculo o fibra muscular al estimulo, es decir que describe cómo se propaga el potencial de acción en el músculo.
 
 # Procedimiento
+
 1.Se usó el sistema de adquisición de datos DAQ NI USB 6001/6002/6003
 
-2. Se conectaron los electrodos al amplificador y al DAQ, para después ser adheridos en el musculo braquioradial del antebrazo izquierdo sujeto.
+2. Se conectaron los electrodos al amplificador y al DAQ, para después ser adheridos en el músculo braquioradial del antebrazo izquierdo sujeto.
    
 3. Se define la frecuencia de muestreo con 1000Hz
  
@@ -43,7 +44,7 @@ def apply_hamming_windows(signal, peaks, fs, window_size=0.2):
 
 Se utilizó la ventana Hamming porque reduce el efecto de fuga espectral al calcular la Transformada de Fourier y suaviza los bordes de las ventanas para evitar artefactos.  
 
-A su vez se realiza un analisis espectral utilizando la Transformada de Fourier para convertir la señal al dominio de la fecuencia para saber como se distribuyen las frecuencias en la señal capturada. Teoricamente si la frecuencia mediana disminuye
+A su vez se realiza un análisis espectral utilizando la Transformada de Fourier para convertir la señal al dominio de la fecuencia para saber como se distribuyen las frecuencias en la señal capturada. Teoricamente si la frecuencia mediana disminuye
 
 ```def spectral_analysis(windows, fs):
     freq_medians = []
