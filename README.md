@@ -20,6 +20,9 @@ La respuesta impulsiva es la respuesta del múusculo o fibra muscular al estimul
 
 Se aplicó un filtro pasa banda en el rango de 20 a 450 Hz es fundamental para mejorar la calidad de la señal y garantizar la precisión en su procesamiento. El filtro pasa altas, con un umbral de 20 Hz, permite eliminar artefactos de movimiento, fluctuaciones de corriente continua y ruido fisiológico de baja frecuencia, mientras que el filtro pasa bajas, con un límite superior de 450 Hz, atenúa el ruido eléctrico, la interferencia por contacto del electrodo y componentes de alta frecuencia no relevantes. La implementación de este filtrado mediante la función `filtfilt()` asegura un procesamiento sin distorsión de fase, lo que es esencial para la detección precisa de contracciones musculares y el análisis de la fatiga muscular.
 
+![image](https://github.com/user-attachments/assets/610dc76b-f9a4-4989-8c64-0f001fb19502)
+
+
 ```def bandpass_filter(signal, fs, lowcut=20, highcut=450, order=4):
     nyq = 0.5 * fs  # Frecuencia de Nyquist
     low, high = lowcut / nyq, highcut / nyq  # Normalización de frecuencias
@@ -97,8 +100,8 @@ La función`evaluate_fatigue_first_last(freq_medians)` evalúa la fatiga muscula
 
 ![image](https://github.com/user-attachments/assets/c6785897-2ae4-49ea-b1ac-149577514340)
 
-Dado que se comparan la primera y la última contracción, el resultado indica que la mediana de la frecuencia no cambió de manera significativa entre ambas. Esto sugiere que, a lo largo del experimento, no hubo una disminución notable en la frecuencia mediana, lo que generalmente se asocia con la fatiga muscular.esto significa que el músculo mantuvo su comportamiento electromiográfico sin una reducción evidente en la frecuencia, por lo que no se puede concluir que haya ocurrido fatiga en el período analizado.
-ESto se puede evidenciar en la grafica de las ventanas.
+Dado que se comparan la primera y la última contracción, el resultado indica que la mediana de la frecuencia no cambió de manera significativa entre ambas. Esto sugiere que, a lo largo del experimento, no hubo una disminución notable en la frecuencia mediana, lo que generalmente se asocia con la fatiga muscular, esto significa que el músculo mantuvo su comportamiento electromiográfico sin una reducción evidente en la frecuencia, por lo que no se puede concluir que haya ocurrido fatiga en el período analizado.
+Esto se puede evidenciar en la grafica de las ventanas.
 
 ![image](https://github.com/user-attachments/assets/7b7c31e7-9eb9-4ea5-bf86-723e77802cdd)
 ![image](https://github.com/user-attachments/assets/5ce8d829-593d-4c75-8762-fbe8f31a5308)
