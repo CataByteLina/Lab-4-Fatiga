@@ -2,7 +2,7 @@
 La electromiografía es un estudio que mide la actividad eléctrica de los músculos y los nervios que los controlan. Se usa para diagnosticar trastornos neuromusculares, como neuropatías, miopatías o enfermedades de la motoneurona. El electromiograma es la grabación de dicha actividad electrica. La electromiografía se puede realizar de dos formas, una se realiza insertando electrodos de aguja en los músculos para registrar su actividad en reposo y durante la contracción, la otra se hace superficialmente por medio de electrodos, utilizando 2 electrodos de trabajo y uno de tierra. En este laboratorio se hizo el estudio de el músculo braquioradial de forma superficial.
 La respuesta impulsiva es la respuesta del múusculo o fibra muscular al estimulo, es decir que describe cómo se propaga el potencial de acción en el músculo. 
 
-# Procedimiento
+## Procedimiento
 
 1.Se usó el sistema de adquisición de datos DAQ NI USB 6001/6002/6003
 
@@ -15,14 +15,14 @@ La respuesta impulsiva es la respuesta del múusculo o fibra muscular al estimul
 5. Se realiza el aventanamiento
 
 6. Análisis espectral
-# Captura de la señal
+## Captura de la señal
 ![image](https://github.com/user-attachments/assets/4826e3e3-a1a4-4c51-bdcb-1996245e8d5e)
 
 Se tomó la señal con una duración de 120 segundos, a una frecuencia de 100 Hz y se realizaron 10 contracciones musculares.
 
-# Filtro
+## Filtro
 
-Se utilizó un pasa banda Butterworth de orden 4 para eliminar el ruido de baja frecuencia como artefactos o línea base y eliminar ruido de alta frecuencia, también porque se centra en el rango de frecuencias normal de las señales electromiograficas.
+Se aplicó un filtro pasa banda en el rango de 20 a 450 Hz es fundamental para mejorar la calidad de la señal y garantizar la precisión en su procesamiento. El filtro pasa altas, con un umbral de 20 Hz, permite eliminar artefactos de movimiento, fluctuaciones de corriente continua y ruido fisiológico de baja frecuencia, mientras que el filtro pasa bajas, con un límite superior de 450 Hz, atenúa el ruido eléctrico, la interferencia por contacto del electrodo y componentes de alta frecuencia no relevantes. La implementación de este filtrado mediante la función `filtfilt()` asegura un procesamiento sin distorsión de fase, lo que es esencial para la detección precisa de contracciones musculares y el análisis de la fatiga muscular.
 
 ```def bandpass_filter(signal, fs, lowcut=20, highcut=450, order=4):
     nyq = 0.5 * fs  # Frecuencia de Nyquist
@@ -30,8 +30,9 @@ Se utilizó un pasa banda Butterworth de orden 4 para eliminar el ruido de baja 
     b, a = butter(order, [low, high], btype='band')  # Diseño del filtro Butterworth
     return filtfilt(b, a, signal)  # Filtrado con corrección de fase
 ```
+![image](https://github.com/user-attachments/assets/298151af-cadf-49d9-afd7-c492a073ffc2)
 
-# Aventanamiento
+## Aventanamiento
 
 El aventanamiento es una técnica en el procesamiento de señales donde una señal larga se divide en segmentos más pequeños (ventanas). A cada ventana se le aplica una función matemática que suaviza los bordes, evitando problemas como la fuga espectral cuando se hace análisis de frecuencia. Estas ventanas permiten analizar cambios "locales", en este caso es una ventana por cada contracción muscular.
 
@@ -96,5 +97,13 @@ def evaluate_fatigue_first_last(freq_medians):
     
     return t_stat, p_value, test_name, (p_shapiro_first, p_shapiro_last)
 ```
+La función`evaluate_fatigue_first_last(freq_medians)` evalúa la fatiga muscular comparando la primera y la última frecuencia mediana de una serie de mediciones de EMG. Primero, verifica si hay suficientes datos; si no, devuelve un mensaje de error. Luego, extrae la primera y la última frecuencia mediana y realiza una prueba de normalidad (Shapiro-Wilk) en las tres primeras y tres últimas mediciones, si hay al menos tres datos disponibles. Dependiendo del resultado de esta prueba, usa una prueba T pareada si los datos son normales o una prueba de Wilcoxon si no lo son. Finalmente, devuelve el estadístico de la prueba, el valor p, el tipo de prueba realizada y los valores p de las pruebas de normalidad. Sin embargo, el código tiene errores porque pasa listas de un solo elemento a las pruebas estadísticas, lo que puede generar fallos. Una mejor versión promedia varias ventanas iniciales y finales antes de aplicar la prueba, asegurando un análisis más robusto y confiable de la fatiga muscular.
 
+![image](https://github.com/user-attachments/assets/c6785897-2ae4-49ea-b1ac-149577514340)
+
+Dado que se comparan la primera y la última contracción, el resultado indica que la mediana de la frecuencia no cambió de manera significativa entre ambas. Esto sugiere que, a lo largo del experimento, no hubo una disminución notable en la frecuencia mediana, lo que generalmente se asocia con la fatiga muscular.esto significa que el músculo mantuvo su comportamiento electromiográfico sin una reducción evidente en la frecuencia, por lo que no se puede concluir que haya ocurrido fatiga en el período analizado.
+ESto se puede evidenciar en la grafica de las vetanas.
+
+![image](https://github.com/user-attachments/assets/7b7c31e7-9eb9-4ea5-bf86-723e77802cdd)
+![image](https://github.com/user-attachments/assets/5ce8d829-593d-4c75-8762-fbe8f31a5308)
 
