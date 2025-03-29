@@ -98,7 +98,7 @@ La función`evaluate_fatigue_first_last(freq_medians)` evalúa la fatiga muscula
 ![image](https://github.com/user-attachments/assets/c6785897-2ae4-49ea-b1ac-149577514340)
 
 Dado que se comparan la primera y la última contracción, el resultado indica que la mediana de la frecuencia no cambió de manera significativa entre ambas. Esto sugiere que, a lo largo del experimento, no hubo una disminución notable en la frecuencia mediana, lo que generalmente se asocia con la fatiga muscular.esto significa que el músculo mantuvo su comportamiento electromiográfico sin una reducción evidente en la frecuencia, por lo que no se puede concluir que haya ocurrido fatiga en el período analizado.
-ESto se puede evidenciar en la grafica de las vetanas.
+ESto se puede evidenciar en la grafica de las ventanas.
 
 ![image](https://github.com/user-attachments/assets/7b7c31e7-9eb9-4ea5-bf86-723e77802cdd)
 ![image](https://github.com/user-attachments/assets/5ce8d829-593d-4c75-8762-fbe8f31a5308)
