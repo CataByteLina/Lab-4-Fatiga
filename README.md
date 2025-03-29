@@ -56,3 +56,40 @@ A su vez se realiza un analisis espectral utilizando la Transformada de Fourier 
 ```
 
 # Análisis Espectral
+
+Se evalua la disminución de la frecuencia de la mediana, si esta disminuye es porque hay fatiga.
+```
+plt.figure()
+plt.plot(freq_medians, marker='o', linestyle='-')
+plt.xlabel('Número de ventana')
+plt.ylabel('Frecuencia mediana (Hz)')
+plt.title('Evolución de la frecuencia mediana')
+plt.show()
+```
+Utilizando la prueba de hipótesis se evalua si el cambio es significativo para poder evidenciar si hubo fatiga o no
+
+```python
+def evaluate_fatigue_first_last(freq_medians):
+    if len(freq_medians) < 2:
+        print(" No hay suficientes contracciones para la prueba de hipótesis.")
+        return None, None, "Sin datos", (None, None)
+    
+    first, last = np.array(freq_medians[0]), np.array(freq_medians[-1])  # Se comparan la primera y la última frecuencia mediana
+    
+    if len(freq_medians) >= 3:
+        _, p_shapiro_first = shapiro(freq_medians[:3])  # Prueba de normalidad en las primeras ventanas
+        _, p_shapiro_last = shapiro(freq_medians[-3:])  # Prueba de normalidad en las últimas ventanas
+    else:
+        p_shapiro_first, p_shapiro_last = None, None
+    
+    if p_shapiro_first is not None and p_shapiro_first > 0.05 and p_shapiro_last > 0.05:
+        t_stat, p_value = ttest_rel([first], [last])  # Prueba T pareada si los datos son normales
+        test_name = "Prueba T pareada"
+    else:
+        t_stat, p_value = wilcoxon([first], [last])  # Prueba de Wilcoxon si los datos no son normales
+        test_name = "Prueba de Wilcoxon"
+    
+    return t_stat, p_value, test_name, (p_shapiro_first, p_shapiro_last)
+```
+
+
