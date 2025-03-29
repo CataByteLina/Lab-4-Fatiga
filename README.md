@@ -15,10 +15,6 @@ La respuesta impulsiva es la respuesta del múusculo o fibra muscular al estimul
 5. Se realiza el aventanamiento
 
 6. Análisis espectral
-## Captura de la señal
-![image](https://github.com/user-attachments/assets/4826e3e3-a1a4-4c51-bdcb-1996245e8d5e)
-
-Se tomó la señal con una duración de 120 segundos, a una frecuencia de 100 Hz y se realizaron 10 contracciones musculares.
 
 ## Filtro
 
